@@ -65,8 +65,8 @@ export default {
   },
   components: {},
   async mounted() {
-    const rsl = await tryLogin.call(this, true);
-    if (rsl.data) {
+    const rsl = await tryLogin.call(this, false);
+    if (rsl && rsl.data) {
       window.location.href = "/index.html";
     }
   }
