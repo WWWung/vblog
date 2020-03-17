@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
 const BaseModel = require('./BaseModel');
+const uuid = require("uuid");
 const {
     crypt,
     createToken,
-    decodeToken
 } = require('../utils/utils')
 
 const tableName = 'User';
@@ -57,7 +57,7 @@ class User extends BaseModel {
             const record = await this.add({
                 hash,
                 user
-            })
+            }, ctx)
             const token = createToken({
                 user,
                 id: record.id
@@ -68,6 +68,14 @@ class User extends BaseModel {
 
     getUserInfo(data, ctx) {
         return ctx.state.user
+    }
+
+    // 单个增加
+    async add(data) {
+        if (!data.id) {
+            data.id = uuid.v4()
+        }
+        return this.orm.create(data);
     }
 }
 
