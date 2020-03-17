@@ -5,13 +5,12 @@ const rules = [{
     loader: 'vue-loader'
 },
 {
-    test: /\.(sa|sc|c)ss$/,
+    test: /\.css$/,
     use: [
         devMode ? "style-loader" : MiniCssExtractPlugin.loader,
         // "style-loader",
         'css-loader',
         'postcss-loader',
-        'sass-loader',
     ],
 },
 {
