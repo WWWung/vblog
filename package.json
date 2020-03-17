@@ -58,7 +58,6 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
-    "bcrypt": "^4.0.1",
     "crypto": "^1.0.1",
     "element-ui": "^2.13.0",
     "jwt-simple": "^0.5.6",
