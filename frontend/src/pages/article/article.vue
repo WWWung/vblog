@@ -50,6 +50,7 @@ export default {
         }
         this.htmlContent = rsl.data.htmlContent;
         this.title = rsl.data.title;
+        document.querySelector("title").innerHTML = this.title;
         this.createdAt = dateFormat(rsl.data.createdAt, "YYYY-mm-dd HH:MM");
         this.updatedAt = dateFormat(rsl.data.updatedAt, "YYYY-mm-dd HH:MM");
       });
