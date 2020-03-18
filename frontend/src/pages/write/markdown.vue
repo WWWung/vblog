@@ -78,7 +78,9 @@ export default {
         return;
       }
       this.id = id;
-      this.$get(`/api/article/get?id=${id}`).then(rsl => {
+      this.$post(`/api/article/get`, {
+        id
+      }).then(rsl => {
         console.log(rsl);
         if (rsl.data) {
           if (rsl.data.userName !== this.user) {
@@ -87,6 +89,7 @@ export default {
           }
           this.mdContent = rsl.data.mdContent;
           this.title = rsl.data.title;
+          document.querySelector("title").innerHTML = this.title;
         }
       });
     }

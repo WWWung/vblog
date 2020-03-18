@@ -15,3 +15,21 @@ new Vue({
     el: '#app',
     render: h => h(Write)
 })
+
+window.addEventListener("scroll", e => {
+    const dom = document.querySelector(".v-note-op")
+    if (!dom) {
+        return;
+    }
+    if (document.documentElement.scrollTop >= 165) {
+        document.body.classList.add('showTools')
+        if (!dom.style.width) {
+            dom.style.width = `${document.querySelector('.editorWrap').getBoundingClientRect().width}px`;
+        }
+    } else {
+        document.body.classList.remove('showTools');
+        if (dom.style.width) {
+            dom.style.width = '';
+        }
+    }
+})

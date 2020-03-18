@@ -1,12 +1,13 @@
 <template>
   <div class="editorWrap">
     <mavon-editor
-      v-model="defaultValue"
+      v-model="value"
       ref="md"
       :toolbars="config.toolbars"
       @change="change"
       @save="submit"
       @imgAdd="imgAdd"
+      :codeStyle="'github'"
       style="min-height: 600px"
     />
   </div>
@@ -67,6 +68,14 @@ export default {
         console.log(res);
         this.$refs.md.$img2Url(pos, `${apiPrefix}${res.data.url}`);
       });
+    }
+  },
+  computed: {
+    value: {
+      get() {
+        return this.defaultValue;
+      },
+      set() {}
     }
   }
 };

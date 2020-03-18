@@ -10,7 +10,7 @@
         最后更新于 {{updatedAt}}
       </div>
       <div
-        class="article"
+        class="article markdown-body"
         v-html="htmlContent"
       >
 
