@@ -81,7 +81,7 @@ export default {
       this.$get(`/api/article/get?id=${id}`).then(rsl => {
         console.log(rsl);
         if (rsl.data) {
-          if (rsl.data.user !== this.user) {
+          if (rsl.data.userName !== this.user) {
             window.location.href = "/index.html";
             return;
           }
