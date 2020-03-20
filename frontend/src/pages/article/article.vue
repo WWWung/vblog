@@ -22,6 +22,8 @@
 <script type="text/ecmascript-6">
 import HeaderComponent from "@/components/header.vue";
 import { dateFormat, parseQueryString, tryLogin } from "@/utils/utils";
+import hljs from "highlight.js";
+import mdIt from "markdown-it";
 export default {
   data() {
     return {
@@ -48,7 +50,18 @@ export default {
         if (!rsl.data) {
           return;
         }
-        this.htmlContent = rsl.data.htmlContent;
+        const md = mdIt({
+          highlight: function(str, lang) {
+            if (lang && hljs.getLanguage(lang)) {
+              try {
+                return hljs.highlight(lang, str).value;
+              } catch (__) {}
+            }
+
+            return ""; // 使用额外的默认转义
+          }
+        });
+        this.htmlContent = md.render(rsl.data.mdContent);
         this.title = rsl.data.title;
         document.querySelector("title").innerHTML = this.title;
         this.createdAt = dateFormat(rsl.data.createdAt, "YYYY-mm-dd HH:MM");
